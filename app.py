@@ -3,7 +3,12 @@ from flasgger import Swagger
 from api.routes.auth import auth_blueprint
 from api.routes.user import users_blueprint
 
+from flask_cors import CORS
+
 app = Flask(__name__)
+
+# Habilitar CORS globalmente para todas las rutas
+CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}}, supports_credentials=True)
 
 # Configuración de Swagger
 swagger = Swagger(app)
